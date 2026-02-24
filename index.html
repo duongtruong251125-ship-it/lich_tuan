@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lịch Tuần Cute</title>
+
+<style>
+/* ===== NỀN ĐỘNG ===== */
+body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+    overflow-x: hidden;
+}
+
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+/* ===== TIÊU ĐỀ ===== */
+h1 {
+    text-align: center;
+    padding: 20px;
+    font-size: 36px;
+    color: white;
+    text-shadow: 0 0 10px #fff, 0 0 20px #ff66c4;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px #fff; }
+    to { text-shadow: 0 0 20px #ff66c4, 0 0 30px #ff99dd; }
+}
+
+/* ===== LAYOUT ===== */
+.schedule {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 20px;
+}
+
+/* ===== CARD ===== */
+.card {
+    position: relative;
+    border-radius: 25px;
+    padding: 20px;
+    color: #333;
+    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.7);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: 0.4s;
+    animation: fadeIn 1s ease forwards;
+}
+
+.card:hover {
+    transform: scale(1.05) rotate(1deg);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+/* sticker góc */
+.card::before {
+    content: "🌸";
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 30px;
+}
+
+/* xuất hiện mềm */
+@keyframes fadeIn {
+    from {opacity:0; transform: translateY(20px);}
+    to {opacity:1; transform: translateY(0);}
+}
+
+.card h2 {
+    margin-top: 0;
+    color: #ff4da6;
+}
+
+.section-title {
+    font-weight: bold;
+    margin-top: 10px;
+    color: #7b2cbf;
+}
+
+.time {
+    margin-left: 10px;
+    line-height: 1.7;
+}
+
+/* ===== HẠT LẤP LÁNH ===== */
+.sparkle {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: floatUp 8s linear infinite;
+}
+
+@keyframes floatUp {
+    from { transform: translateY(100vh); opacity: 1; }
+    to { transform: translateY(-10vh); opacity: 0; }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:600px){
+    h1 { font-size: 28px; }
+}
+</style>
+</head>
+
+<body>
+
+<h1>✨ LỊCH TUẦN CỦA E IU BẢO NGỌC ✨</h1>
+
+<div class="schedule">
+
+<div class="card">
+<h2>Thứ Hai 💖</h2>
+<div class="section-title">Sáng - Chiều</div>
+<div class="time">08:00 – 17:00: Lên Lab làm thực nghiệm</div>
+<div class="section-title">Tối</div>
+<div class="time">18:00 – 19:30: Dạy Tuân</div>
+<div class="time">20:30 – 22:00: Dạy Yến</div>
+<div class="time">Sau 22:00: Xem bài vở</div>
+</div>
+
+<div class="card">
+<h2>Thứ Ba 🌈</h2>
+<div class="section-title">Sáng - Chiều</div>
+<div class="time">08:00 – 17:00: Lên Lab làm thực nghiệm</div>
+<div class="section-title">Tối</div>
+<div class="time">18:00 – 19:00: Dạy Bon</div>
+<div class="time">Sau 19:00: Xem bài vở</div>
+</div>
+
+<div class="card">
+<h2>Thứ Tư 🌸</h2>
+<div class="section-title">Sáng - Chiều</div>
+<div class="time">08:00 – 17:00: Lên Lab làm thực nghiệm</div>
+<div class="section-title">Tối</div>
+<div class="time">18:00 – 19:30: Dạy Tuân</div>
+<div class="time">19:45 – 22:00: Dạy Yến + Bon</div>
+<div class="time">Sau 22:00: Xem bài vở</div>
+</div>
+
+<div class="card">
+<h2>Thứ Năm 🏸</h2>
+<div class="section-title">Tối</div>
+<div class="time">19:00 – 21:00: Đánh cầu lông</div>
+<div class="time">Sau 22:00: Xem bài vở</div>
+</div>
+
+<div class="card">
+<h2>Thứ Sáu 📚</h2>
+<div class="section-title">Tối</div>
+<div class="time">18:30 – 20:30: Dạy Toán 6</div>
+<div class="time">Sau 22:00: Xem bài vở</div>
+</div>
+
+<div class="card">
+<h2>Thứ Bảy ☁</h2>
+<div class="time">Cả ngày: Linh động theo tuần</div>
+</div>
+
+<div class="card">
+<h2>Chủ Nhật 🎀</h2>
+<div class="section-title">Sáng</div>
+<div class="time">09:00 – 11:00: Đánh cầu lông</div>
+<div class="section-title">Chiều</div>
+<div class="time">15:00 – 17:00: Dạy Toán 6</div>
+<div class="section-title">Tối</div>
+<div class="time">Sau 17:00: Thư giãn nghỉ ngơi</div>
+</div>
+
+</div>
+
+<!-- TẠO HẠT LẤP LÁNH -->
+<script>
+for(let i=0;i<25;i++){
+    let sparkle=document.createElement("div");
+    sparkle.className="sparkle";
+    sparkle.style.left=Math.random()*100+"vw";
+    sparkle.style.animationDuration=(5+Math.random()*5)+"s";
+    document.body.appendChild(sparkle);
+}
+</script>
+
+</body>
+</html>
