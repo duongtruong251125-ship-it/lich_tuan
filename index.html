@@ -6,192 +6,241 @@
 <title>Lịch Tuần Cute</title>
 
 <style>
-/* ===== NỀN ĐỘNG ===== */
-body {
-    margin: 0;
+
+/* ===== RESET ===== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
     font-family: "Segoe UI", sans-serif;
-    background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
-    background-size: 400% 400%;
-    animation: gradientBG 12s ease infinite;
-    overflow-x: hidden;
 }
 
-@keyframes gradientBG {
-    0% {background-position: 0% 50%;}
-    50% {background-position: 100% 50%;}
-    100% {background-position: 0% 50%;}
+/* ===== VIDEO NỀN ===== */
+.video-bg{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-2;
+}
+
+/* Overlay làm tối */
+.overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.4);
+    z-index:-1;
 }
 
 /* ===== TIÊU ĐỀ ===== */
-h1 {
-    text-align: center;
-    padding: 20px;
-    font-size: 36px;
-    color: white;
-    text-shadow: 0 0 10px #fff, 0 0 20px #ff66c4;
-    animation: glow 2s infinite alternate;
+h1{
+    text-align:center;
+    padding:30px;
+    font-size:38px;
+    color:white;
+    text-shadow:0 0 20px #ff69b4;
+    animation:glow 2s infinite alternate;
 }
 
-@keyframes glow {
-    from { text-shadow: 0 0 10px #fff; }
-    to { text-shadow: 0 0 20px #ff66c4, 0 0 30px #ff99dd; }
+@keyframes glow{
+    from{ text-shadow:0 0 10px #fff;}
+    to{ text-shadow:0 0 30px #ff69b4,0 0 60px #ff99dd;}
 }
 
-/* ===== LAYOUT ===== */
-.schedule {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    padding: 20px;
+/* ===== GRID ===== */
+.container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+    padding:40px;
 }
 
 /* ===== CARD ===== */
-.card {
-    position: relative;
-    border-radius: 25px;
-    padding: 20px;
-    color: #333;
-    backdrop-filter: blur(10px);
-    background: rgba(255,255,255,0.7);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    transition: 0.4s;
-    animation: fadeIn 1s ease forwards;
+.day-card{
+    position:relative;
+    background:rgba(255,255,255,0.9);
+    backdrop-filter:blur(15px);
+    border-radius:25px;
+    padding:25px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.3);
+    transition:0.4s;
 }
 
-.card:hover {
-    transform: scale(1.05) rotate(1deg);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+.day-card:hover{
+    transform:translateY(-10px) scale(1.03);
 }
 
-/* sticker góc */
-.card::before {
-    content: "🌸";
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    font-size: 30px;
+/* ===== STICKER ỔN ĐỊNH ===== */
+.sticker{
+    position:absolute;
+    top:-20px;
+    right:-20px;
+    width:95px;
+    height:95px;
+    object-fit:cover;
+    border-radius:50%;
+    border:6px solid white;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    transform:rotate(12deg);
+    transition:0.3s;
 }
 
-/* xuất hiện mềm */
-@keyframes fadeIn {
-    from {opacity:0; transform: translateY(20px);}
-    to {opacity:1; transform: translateY(0);}
+.sticker:hover{
+    transform:rotate(0deg) scale(1.1);
 }
 
-.card h2 {
-    margin-top: 0;
-    color: #ff4da6;
+/* ===== NỘI DUNG ===== */
+.day-card h2{
+    color:#ff4da6;
+    margin-bottom:10px;
 }
 
-.section-title {
-    font-weight: bold;
-    margin-top: 10px;
-    color: #7b2cbf;
+ul{
+    padding-left:20px;
 }
 
-.time {
-    margin-left: 10px;
-    line-height: 1.7;
+li{
+    margin-bottom:8px;
+    line-height:1.6;
 }
 
-/* ===== HẠT LẤP LÁNH ===== */
-.sparkle {
-    position: fixed;
-    width: 8px;
-    height: 8px;
-    background: white;
-    border-radius: 50%;
-    opacity: 0.8;
-    animation: floatUp 8s linear infinite;
+/* ===== TIM RƠI ===== */
+.heart{
+    position:fixed;
+    top:-20px;
+    font-size:20px;
+    animation:fall linear infinite;
+    opacity:0.8;
+    pointer-events:none;
 }
 
-@keyframes floatUp {
-    from { transform: translateY(100vh); opacity: 1; }
-    to { transform: translateY(-10vh); opacity: 0; }
+@keyframes fall{
+    0%{
+        transform:translateY(-10vh);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(110vh);
+        opacity:0;
+    }
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width:600px){
-    h1 { font-size: 28px; }
+/* ===== MOBILE ===== */
+@media(max-width:600px){
+    h1{font-size:26px;}
+    .sticker{
+        width:75px;
+        height:75px;
+        top:-15px;
+        right:-15px;
+    }
 }
+
 </style>
 </head>
 
 <body>
 
-<h1>✨ LỊCH TUẦN CỦA E IU BẢO NGỌC ✨</h1>
+<!-- VIDEO NỀN -->
+<video autoplay muted loop playsinline class="video-bg">
+    <source src="video/bg.mp4" type="video/mp4">
+</video>
+<div class="overlay"></div>
 
-<div class="schedule">
+<h1>✨ LỊCH TUẦN CỦA BẢO NGỌC ✨</h1>
 
-<div class="card">
-<h2>Thứ Hai 💖</h2>
-<div class="section-title">Sáng - Chiều</div>
-<div class="time">08:00 – 17:00: Lên Lab làm thực nghiệm</div>
-<div class="section-title">Tối</div>
-<div class="time">18:00 – 19:30: Dạy Tuân</div>
-<div class="time">20:30 – 22:00: Dạy Yến</div>
-<div class="time">Sau 22:00: Xem bài vở</div>
+<div class="container">
+
+<div class="day-card">
+<img src="images/mon.jpg" class="sticker">
+<h2>Thứ Hai</h2>
+<ul>
+<li>08:00 – 17:00: Lên Lab</li>
+<li>18:00 – 19:30: Dạy Tuân</li>
+<li>20:30 – 22:00: Dạy Yến</li>
+<li>Sau 22:00: Xem Bài Vở</li>
+</ul>
 </div>
 
-<div class="card">
-<h2>Thứ Ba 🌈</h2>
-<div class="section-title">Sáng - Chiều</div>
-<div class="time">08:00 – 17:00: Lên Lab làm thực nghiệm</div>
-<div class="section-title">Tối</div>
-<div class="time">18:00 – 19:00: Dạy Bon</div>
-<div class="time">Sau 19:00: Xem bài vở</div>
+<div class="day-card">
+<img src="images/tue.jpg" class="sticker">
+<h2>Thứ Ba</h2>
+<ul>
+<li>08:00 – 17:00: Lên Lab</li>
+<li>18:00 – 19:00: Dạy Bon</li>
+<li>Sau 19:00: Xem Bài Vở</li>
+
+</ul>
 </div>
 
-<div class="card">
-<h2>Thứ Tư 🌸</h2>
-<div class="section-title">Sáng - Chiều</div>
-<div class="time">08:00 – 17:00: Lên Lab làm thực nghiệm</div>
-<div class="section-title">Tối</div>
-<div class="time">18:00 – 19:30: Dạy Tuân</div>
-<div class="time">19:45 – 22:00: Dạy Yến + Bon</div>
-<div class="time">Sau 22:00: Xem bài vở</div>
+<div class="day-card">
+<img src="images/wed.jpg" class="sticker">
+<h2>Thứ Tư</h2>
+<ul>
+<li>08:00 – 17:00: Lên Lab</li>
+<li>18:00 – 19:30: Dạy Tuân</li>
+<li>19:45 – 22:00: Dạy Yến + Bon</li>
+<li>Sau 22:00: Xem Bài Vở</li>
+</ul>
 </div>
 
-<div class="card">
-<h2>Thứ Năm 🏸</h2>
-<div class="section-title">Tối</div>
-<div class="time">19:00 – 21:00: Đánh cầu lông</div>
-<div class="time">Sau 22:00: Xem bài vở</div>
+<div class="day-card">
+<img src="images/thu.jpg" class="sticker">
+<h2>Thứ Năm</h2>
+<ul>
+<li>08:00 – 17:00: Lên Lab</li>  
+<li>19:00 – 21:00: Đánh cầu lông</li>
+<li>Sau 22:00: Xem Bài Vở</li>
+</ul>
 </div>
 
-<div class="card">
-<h2>Thứ Sáu 📚</h2>
-<div class="section-title">Tối</div>
-<div class="time">18:30 – 20:30: Dạy Toán 6</div>
-<div class="time">Sau 22:00: Xem bài vở</div>
+<div class="day-card">
+<img src="images/fri.jpg" class="sticker">
+<h2>Thứ Sáu</h2>
+<ul>
+<li>18:30 – 20:30: Dạy Toán 6</li>
+<li>Sau 22:00: Xem Bài Vở</li>
+</ul>
 </div>
 
-<div class="card">
-<h2>Thứ Bảy ☁</h2>
-<div class="time">Cả ngày: Linh động theo tuần</div>
+<div class="day-card">
+<img src="images/sat.jpg" class="sticker">
+<h2>Thứ Bảy</h2>
+<ul>
+<li>Cả Ngày: Linh Động</li>
+</ul>
 </div>
 
-<div class="card">
-<h2>Chủ Nhật 🎀</h2>
-<div class="section-title">Sáng</div>
-<div class="time">09:00 – 11:00: Đánh cầu lông</div>
-<div class="section-title">Chiều</div>
-<div class="time">15:00 – 17:00: Dạy Toán 6</div>
-<div class="section-title">Tối</div>
-<div class="time">Sau 17:00: Thư giãn nghỉ ngơi</div>
+<div class="day-card">
+<img src="images/sun.jpg" class="sticker">
+<h2>Chủ Nhật</h2>
+<ul>
+<li>09:00 – 11:00: Đánh cầu lông</li>
+<li>15:00 – 17:00: Dạy Toán 6</li>
+<li>Sau 17:00: Đi Chơi Với Anh Iu</li>
+</ul>
 </div>
 
 </div>
 
-<!-- TẠO HẠT LẤP LÁNH -->
 <script>
-for(let i=0;i<25;i++){
-    let sparkle=document.createElement("div");
-    sparkle.className="sparkle";
-    sparkle.style.left=Math.random()*100+"vw";
-    sparkle.style.animationDuration=(5+Math.random()*5)+"s";
-    document.body.appendChild(sparkle);
+
+/* TẠO TIM RƠI */
+for(let i=0;i<40;i++){
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="💗";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=(5+Math.random()*5)+"s";
+    heart.style.fontSize=(15+Math.random()*20)+"px";
+    document.body.appendChild(heart);
 }
+
 </script>
 
 </body>
